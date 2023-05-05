@@ -1,4 +1,4 @@
-import { Form, Label, Span, Input, Select, Button } from './styled.js';
+import { Form, Label, Span, Input, Select, Button,Alert } from './styled.js';
 import { useState, useEffect } from 'react';
 const FormContent = ({ addService }) => {
     const [serviceName, setServiceName] = useState('');
@@ -8,16 +8,30 @@ const FormContent = ({ addService }) => {
     const [vat, setVat] = useState(23);
     const [discount, setDiscount] = useState('');
 
+    const [alert, setAlert] = useState(false)
+
+    const validationForm =()=>{
+        if (!(serviceName==0||price==0||quantity==0)) {
+           return false;
+        }
+        return true;
+      
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-       
-        const netto = (price * quantity *(1-discount/100)).toFixed(2);
+      let condition = validationForm();
+       if (condition) {
+        setAlert(true);
+        return false;
+       }
+       setAlert(false);
+        const netto = +(price * quantity *(1-discount/100)).toFixed(2);
         
-        const brutto = (netto * (1+vat/100)).toFixed(2);
+        const brutto = +(netto * (1+vat/100)).toFixed(2);
 
-        const discountPrice = (price*quantity*discount/100).toFixed(2);
+        const discountPrice = +(price*quantity*discount/100).toFixed(2);
         
         addService({ serviceName, price, quantity, unit, vat, discount, brutto, netto, discountPrice});
         setServiceName('');
@@ -31,6 +45,7 @@ const FormContent = ({ addService }) => {
     
 
     return (
+        <>
         <Form onSubmit={handleSubmit}>
             <Label>
                 <Span>Usługa:</Span>
@@ -71,6 +86,10 @@ const FormContent = ({ addService }) => {
             </Label>
             <Button>Dodaj pozycję</Button>
         </Form>
+        <Alert alert={alert}>
+            <p>Pola nie mogą być puste</p>
+        </Alert >
+        </>
     );
 };
 
