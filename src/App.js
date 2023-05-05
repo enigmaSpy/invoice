@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <FormContent addService={addService}/>
-      <MainContent serviceList={<ServicesList services={services} removeService={removeService}/>} sumsec={<SummSection />} />
+      <MainContent serviceList={<ServicesList services={services} removeService={removeService}/>} sumsec={<SummSection services={services}/>} />
 
     </div>
   );
