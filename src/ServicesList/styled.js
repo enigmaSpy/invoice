@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 
 export const ServiceListWrapper = styled.div`
     max-width: 100%;
-    margin: 0 auto;
     
 `;
 
@@ -36,6 +35,16 @@ export const Th = styled.th`
 
 export const Td = styled(Th)`
     padding: 8px 16px;
+    text-align:center;
+    ${({quantity})=> quantity && css`
+        text-align:end;
+    `};
+    ${({unit})=>unit&&css`
+        text-align:start;
+    `};
+    ${({discount})=>discount&&css`
+        color: red;
+    `};
 `;
 
 export const Button = styled.button`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled,{css} from 'styled-components';
 
 export const Form = styled.form`
 
@@ -9,7 +9,7 @@ export const Form = styled.form`
 
     @media screen and (max-width: 768px) {
         flex-direction: column;
-        
+        align-items: start;
     }
 `;
 
@@ -19,6 +19,10 @@ export const Label = styled.label`
 
 export const Span = styled.span`
     display: block;
+    @media screen and (max-width: 768px) {
+        display:inline-block;
+        
+    }
 `;
 
 export const Input = styled.input`
@@ -89,4 +93,16 @@ export const Button = styled.button`
     @media screen and (max-width: 768px) {
         margin-top: 10px;
     }
+`;
+
+export const Alert = styled.div`
+     height: 0px;
+    overflow: hidden;
+    text-align: center;
+    background-color: rgba(244, 126, 150, 0.597);
+    transition: height 0.2s ease-in-out;
+  ${({alert})=>alert&&css`
+  transition: height .5 ease-in-out;
+  height: 50px;
+  `};
 `;
