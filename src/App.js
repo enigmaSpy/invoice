@@ -3,29 +3,11 @@ import ServicesList from "./ServicesList";
 import MainContent from "./MainContent";
 import SummSection from "./SummSection";
 
-import { useState } from "react";
+import { useService } from "./useService";
 
 function App() {
 
-  const [services, setServices] = useState([]);
-  const addService = ({ serviceName, price, quantity, unit, vat, discount, brutto, netto, discountPrice}) => {
-    setServices((prevServices) => [...prevServices, {
-      id: crypto.randomUUID(),
-      serviceName,
-      price,
-      quantity,
-      unit,
-      vat,
-      discount,
-      brutto,
-      netto,
-      discountPrice
-    }])
-  };
-
-  const removeService = (id) => {
-    setServices(services.filter((service) => service.id !== id));
-  }
+ const [services, addService, removeService] = useService();
 
   return (
     <div className="App">
