@@ -1,5 +1,5 @@
 import { Form, Label, Span, Input, Select, Button,Alert } from './styled.js';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 const FormContent = ({ addService }) => {
     const [serviceName, setServiceName] = useState('');
     const [price, setPrice] = useState('');
@@ -11,7 +11,7 @@ const FormContent = ({ addService }) => {
     const [alert, setAlert] = useState(false)
 
     const validationForm =()=>{
-        if (!(serviceName==0||price==0||quantity==0)) {
+        if (!(serviceName===0||price===0||quantity===0)) {
            return false;
         }
         return true;
