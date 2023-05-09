@@ -11,7 +11,7 @@ const FormContent = ({ addService }) => {
     const [alert, setAlert] = useState(false)
 
     const validationForm =()=>{
-        if (!(serviceName===0||price===0||quantity===0)) {
+        if (!(serviceName===''||price===''||quantity==='')) {
            return false;
         }
         return true;
@@ -26,6 +26,7 @@ const FormContent = ({ addService }) => {
         setAlert(true);
         return false;
        }
+       
        setAlert(false);
         const netto = +(price * quantity *(1-discount/100)).toFixed(2);
         
