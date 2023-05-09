@@ -5,7 +5,7 @@ export const useService = () => {
 
     const addService = ({ serviceName, price, quantity, unit, vat, discount, brutto, netto, discountPrice }) => {
         setServices((prevServices) => [...prevServices, {
-            id: crypto.randomUUID(),
+            id: prevServices.length > 0 ? prevServices[prevServices.length - 1].id + 1 : 0,
             serviceName,
             price,
             quantity,
