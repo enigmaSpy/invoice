@@ -21,6 +21,6 @@ export const useService = () => {
     const removeService = (id) => {
         setServices(services.filter((service) => service.id !== id));
       };
-      
+
     return [services, addService , removeService];
 };
